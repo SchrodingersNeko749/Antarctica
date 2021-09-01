@@ -1,0 +1,145 @@
+configuration {
+	modi: "drun,window,ssh,file-browser";
+	font: "FontAwesome 14";
+	terminal: "kitty";
+	icon-theme: "Papirus";
+	drun-display-format: "{name}";
+	window-format: "{w}\t{t}";
+	display-window: "s";
+	display-ssh: "";
+	display-drun: "";
+	display-file-browser: "";
+	show-icons: true;
+}
+//foreground   #cddde7
+//background   #02121B
+//background_opacity 0.4
+//cursor       #cddde7
+//
+//color0       #02121B
+//color8       #8f9aa1
+//color1       #1C708F
+//color9       #1C708F
+//color2       #4F738B
+//color10      #4F738B
+//color3       #6990A9
+//color11      #6990A9
+//color4       #4DA5C9
+//color12      #4DA5C9
+//color5       #84A4BB
+//color13      #84A4BB
+//color6       #91B4CC
+//color14      #91B4CC
+//color7       #cddde7
+//color15      #cddde7
+
+*{
+	text-color: @foreground;
+	active-background: #02121B;
+	active-foreground: @foreground;
+	normal-background: @background;
+	normal-foreground: @foreground;
+	urgent-background: #9E2A5E;
+	urgent-foreground: @foreground;
+	alternate-active-background: @background;
+	alternate-active-foreground: @foreground;
+	alternate-normal-background: @background;
+	alternate-normal-foreground: @foreground;
+	alternate-urgent-background: @background;
+	alternate-urgent-foreground: @foreground;
+	selected-active-background: #8f9aa1;
+	selected-active-foreground: @foreground;
+	selected-normal-background: #4F738B;
+	selected-normal-foreground: #0c0816;
+	selected-urgent-background: #84A4BB;
+	selected-urgent-foreground: @foreground;
+	background-color: #0c0816;
+	background: #02121B;
+	foreground: #cddde7;
+	spacing: 0;
+}
+window {
+	background-image : url("~/Images/.jpeg");
+        location: southwest;
+	anchor: southwest;
+	height: 70%;
+	width: 25%;
+	orientation: vertical;
+	children: [mainbox];
+	border: 2px 2px 2px 0px;
+	border-color: @active-background;
+	hide-scrollbar: false;
+	margin: 0px;
+}
+mainbox {
+	spacing: 0.2em;
+	spacing: 0.2em;
+	children: [inputbar, listview];
+}
+listview {
+	spacing: 0.6em;
+	dynamic: false;
+	cycle: true;
+	padding: 0px 5px 0px 5px;
+}
+inputbar {
+	border-radius: 50%;
+	padding: 5px;
+	border-spacing: 5px 0 0 0;
+	border: 1px;
+	spacing: 10px;
+	margin: 5px 0 10px;
+	border-color: @foreground;
+
+}
+element {
+	padding: 10px;
+	border-radius: 2%;
+}
+
+element normal.normal {
+	background-color: @normal-background;
+        //background-image: url("~/Images/.jpeg");
+	text-color: @normal-foreground;
+}
+
+element normal.urgent {
+	background-color: @urgent-background;
+	text-color: @urgent-foreground;
+}
+
+element normal.active {
+	background-color: @active-background;
+	text-color: @active-foreground;
+}
+
+element selected.normal {
+	background-color: @selected-normal-background;
+	text-color: @selected-normal-foreground;
+	border-color: @active-background;
+}
+
+element selected.urgent {
+	background-color: @selected-urgent-background;
+	text-color: @selected-urgent-foreground;
+}
+
+element selected.active {
+	background-color: @selected-active-background;
+	text-color: @selected-active-foreground;
+}
+
+element alternate.normal {
+	background-color: @normal-background;
+	text-color: @normal-foreground;
+}
+
+element alternate.urgent {
+	background-color: @urgent-background;
+	text-color: @urgent-foreground;
+}
+
+element alternate.active {
+	background-color: @active-background;
+	text-color: @active-foreground;
+}
