@@ -20,7 +20,6 @@ host=$2
 options=$1
 ip=$3
 
-echo "REMEMBER TO USE SUDO AS WE ARE ACCESSING /etc/hosts"
 if [[ -z $host ]]; then
 	DisplayOptions
 	cat /etc/hosts	
