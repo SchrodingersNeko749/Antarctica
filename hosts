@@ -1,0 +1,55 @@
+#!/bin/bash
+
+#returns true if it find host
+DoesHostExist() {
+	var=$(grep $1 /etc/hosts)
+	if [[ $var = "" ]]; then
+		false
+	else
+		true
+	fi
+}
+DisplayOptions() {
+	echo "hosts [-options] [host] [ip]
+options :
+-h = display options
+-a = add host
+-d = delete host"
+}
+host=$2
+options=$1
+ip=$3
+
+echo "REMEMBER TO USE SUDO AS WE ARE ACCESSING /etc/hosts"
+if [[ -z $host ]]; then
+	DisplayOptions
+	cat /etc/hosts	
+elif [[ $options == "-d" ]]; then
+		echo ">> deleting host '$host'"
+		sed -i "/$host/d" /etc/hosts
+		echo "Hosts now :"
+		cat /etc/hosts
+elif [[ $options == "-h" ]]; then DisplayOptions
+	else 
+		if [[ $options == "-a" ]]; then
+		 	if [[ $ip == "" ]]; then
+		 		echo "IP is empty. no change will be done"
+		 	else
+		 		if DoesHostExist $host; then
+		 			echo ">> replacing known host '$host'"
+		 			sed -i "s/.*$host/$ip $host/" /etc/hosts
+					echo "Hosts now :"
+					cat /etc/hosts
+		 		else
+		 			echo ">> adding host '$host'"
+		 			sed -i "$ a $ip $host" /etc/hosts
+					echo "Hosts now :"
+					cat /etc/hosts
+		 		fi
+		 	fi
+			 else
+				DisplayOptions 
+				cat /etc/hosts
+		fi
+		
+fi
